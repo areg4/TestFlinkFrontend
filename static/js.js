@@ -1,3 +1,4 @@
+var globalUrl = "https://apiflinkgerardo.herokuapp.com/"
 var allCompanies = {};
 function drawChart(values,idChart){
     labelsName = []
@@ -230,7 +231,7 @@ function sendAjaxPOST(nameCompany,dscCompany,tickerCompany,valCompany){
     }
     $.ajax({
         method: "POST",
-        url: "http://127.0.0.1:8000/api/company/",
+        url: globalUrl+"api/company/",
         data: JSON.stringify(data),
         contentType: "application/json",
         success: function(data, textStatus, xhr) {
@@ -262,7 +263,7 @@ function sendAjaxPUT(uuidCompany,nameCompany,dscCompany,tickerCompany,valCompany
     }
     $.ajax({
         method: "PUT",
-        url: "http://127.0.0.1:8000/api/company/"+uuidCompany+"/",
+        url: globalUrl+"api/company/"+uuidCompany+"/",
         data: JSON.stringify(data),
         contentType: "application/json",
         success: function(data, textStatus, xhr) {
@@ -287,7 +288,7 @@ function sendAjaxPUT(uuidCompany,nameCompany,dscCompany,tickerCompany,valCompany
 function sendAjaxDELETE(uuidCompany){
     $.ajax({
         method: "DELETE",
-        url: "http://127.0.0.1:8000/api/company/"+uuidCompany+"/",
+        url: globalUrl+"api/company/"+uuidCompany+"/",
         success: function(data, textStatus, xhr) {
             if(xhr.status==204){
                 showModal("Compañía borrada con éxito!","INFO!");
@@ -315,7 +316,7 @@ function clearForm(){
 }
 
 function getAjaxGET(){
-    $.getJSON("http://127.0.0.1:8000/api/company/", function(data) {
+    $.getJSON(globalUrl+"api/company/", function(data) {
         if(data.length==0){
             return false
         }
